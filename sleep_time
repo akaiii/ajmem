@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#expect time
+t1=$1
+t2=$2
+mem=$3
+
+dat=$(date +%u%k%M)
+sec=$(date +%S)
+
+#echo $t1
+#echo $t2
+#echo $dat
+#echo $sec
+
+sleep_time=$((($t1/10000-$dat/10000)*24*60*60+($t1/100-$dat/100)*60*60+($t1%100-$dat%100)*60-$sec))
+#echo $sec
+if [ $sleep_time -lt 0 ];then
+	sleep_time=$((7*24*60*60+$sleep_time))
+fi
+#echo $sleep_time 
+
+sleep $sleep_time
+xl mem-set CLOUD 1024
+xl mem-set nfs 1024
+
+
+sleep_time=$((($t2/10000-$t1/10000)*24*60+($t2/100-$t1/100)*60+($t2%100-$t1%100)))
+
+
+if [ $sleep_time -lt 0 ];then
+	sleep_time=$((7*24*60+$sleep_time))
+fi
+#echo $sleep_time 
+sleep "$sleep_time"m
+xl mem-set CLOUD 512
+xl mem-set nfs 512

@@ -4,12 +4,13 @@ while [ "$z" != "0" ]
 do
 	echo -e "Input peak time(wddmm): \c" #-e 
 	read x
-	echo -e "Input off-peak time: \c" #-e
+	echo -e "Input off-peak time(wddmm): \c" #-e
 	read y
 	echo -e "If you want to leave, please input 0 : \c" #-e
 	read z
 
-	nohup sh tm $x $y & 
+	sh sleep_time $x $y &
+	#sh sleep_time $x $y
 
 done
 
