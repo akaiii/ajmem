@@ -1,0 +1,28 @@
+#!/bin/sh
+
+max=4000000
+
+while [ 1 ]; do
+usage1=$(xenstore-read /local/domain/$(xl domid CLOUD)/memory/usage)
+usage2=$(xenstore-read /local/domain/$(xl domid web)/memory/usage)
+
+#if [ $usage1 -ge 90 ] && \
+#[ $(xenstore-read /local/domain/$(xl domain CLOUD)/memory/target) -lt 1048576 ];then
+#	xl mem-set CLOUD 1024
+#elif [ $usage1 -lt 50] && \
+#[ $(xenstore-read /local/domain/$(xl domain CLOUD)/memory/target) -gt 800000 ];then
+#	xl mem-set CLOUD 512
+#fi
+
+if [ $usage2 -ge 90 ] && \
+[ $(xenstore-read /local/domain/$(xl domain CLOUD)/memory/target) -lt 1048576 ];then
+	xl mem-set web 1024
+elif [ $usage2 -lt 50] && \
+[ $(xenstore-read /local/domain/$(xl domain web)/memory/target) -gt 800000 ];then
+	xl mem-set web 512
+fi
+
+sleep 5
+done
+
+

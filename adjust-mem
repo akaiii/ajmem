@@ -1,17 +1,17 @@
 #!/bin/sh
 
-while [ "$z" != "0" ]
-do
-	echo -e "Input peak time(wddmm): \c" #-e 
+#while [ "$z" != "0" ]
+#do
+	echo -e "Input peak time(whhmm): \c" #-e 
 	read x
-	echo -e "Input off-peak time(wddmm): \c" #-e
+	echo -e "Input off-peak time(whhmm): \c" #-e
 	read y
-	echo -e "If you want to leave, please input 0 : \c" #-e
-	read z
 
-	sh sleep_time $x $y &
+	shedule $x $y 
+#	usage &
+	#sleep_time $x $y &
 	#sh sleep_time $x $y
 
-done
+#done
 
 

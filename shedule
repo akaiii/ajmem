@@ -1,0 +1,18 @@
+#!/bin/sh
+
+t1=$(($1%100))
+t2=$((($1%10000)/100))
+t3=$(($1/10000))
+
+t4=$(($2%100))
+t5=$((($2%10000)/100))
+t6=$(($2/10000))
+
+echo "00 00 * * *	echo 3 > /proc/sys/vm/drop_caches
+$t1 $t2 * * $t3 xl mem-set CLOUD 1024 
+$t4 $t5 * * $t6 xl mem-set CLOUD 1024
+$t1 $t2 * * $t3 xl mem-set web 512 
+$t4 $t5 * * $t6 xl mem-set web 512
+" >  /home/public/temp
+
+#crontab /home/public/temp
