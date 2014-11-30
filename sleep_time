@@ -22,7 +22,7 @@ fi
 
 sleep $sleep_time
 xl mem-set CLOUD 1024
-xl mem-set nfs 1024
+xl mem-set ws 1024
 
 
 sleep_time=$((($t2/10000-$t1/10000)*24*60+($t2/100-$t1/100)*60+($t2%100-$t1%100)))
@@ -34,4 +34,4 @@ fi
 #echo $sleep_time 
 sleep "$sleep_time"m
 xl mem-set CLOUD 512
-xl mem-set nfs 512
+xl mem-set ws 512
